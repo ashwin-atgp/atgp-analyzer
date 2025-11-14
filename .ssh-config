@@ -1,0 +1,12 @@
+# SSH Config for Ad Stack Analyzer VPS
+# Add this to ~/.ssh/config for easier connection
+
+Host equityfocusgroup
+    HostName 72.60.223.223
+    User root
+    IdentityFile ~/.ssh/hostinger_mac
+    StrictHostKeyChecking accept-new
+    UserKnownHostsFile ~/.ssh/known_hosts
+    
+# Usage: ssh equityfocusgroup
+# Or: ssh -i ~/.ssh/hostinger_mac root@72.60.223.223
