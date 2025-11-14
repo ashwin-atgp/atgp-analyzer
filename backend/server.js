@@ -81,13 +81,21 @@ app.use(errorHandler);
 // Initialize services
 async function startServer() {
   try {
-    // Initialize database
-    await initializeDatabase();
-    logger.info('Database initialized successfully');
+    // Initialize database (optional - skip if fails)
+    try {
+      await initializeDatabase();
+      logger.info('Database initialized successfully');
+    } catch (dbError) {
+      logger.warn('Database initialization skipped:', dbError.message);
+    }
 
     // Initialize job queue
-    await initializeQueue();
-    logger.info('Job queue initialized successfully');
+    try {
+      await initializeQueue();
+      logger.info('Job queue initialized successfully');
+    } catch (queueError) {
+      logger.warn('Job queue initialization skipped:', queueError.message);
+    }
 
     // Start server
     app.listen(PORT, () => {
